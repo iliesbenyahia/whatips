@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func GetIp() (string, error) {
+func GetPublicIp() (string, error) {
 	type ipifyData struct {
 		IP string `json:"ip"`
 	}
