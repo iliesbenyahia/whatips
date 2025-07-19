@@ -1,6 +1,7 @@
 # whatips
 ![alt text](https://i.ibb.co/23Z9KS0z/kawai-cloud.png)  
-**whatips** is a small Go application that retrieves your current public IP address and compares it to a DNS record.  
+**whatips** is a small Go application that retrieves your current public IP address and compares it to a DNS record of a desired registrar. If your public ip is different from the reigstrar's record, it will update it.
+Simple as that :) ! 
 Currently, it only supports [Gandi](https://www.gandi.net/) as the DNS provider because that is where my personal domain name is registered.  
 
 That said, it is not impossible that the project could be extended in the future to support other DNS registrars and become more generic.
