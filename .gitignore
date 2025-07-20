@@ -1,2 +1,4 @@
 lastip.txt
 .env
+helm/charts
+helm/templates/tempsecret.yaml

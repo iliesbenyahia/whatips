@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "whatips.fullname" . }}
+  labels:
+    app: {{ include "whatips.name" . }}
+spec:
+  schedule: "{{ .Values.cronSchedule }}"
+  concurrencyPolicy: {{ .Values.concurrencyPolicy }}
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.failedJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: {{ .Values.restartPolicy }}
+          containers:
+            - name: job
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              env:
+                - name: GANDI_PAT
+                  valueFrom:
+                    secretKeyRef: 
+                      name: gandi-dns-secret
+                      key: GANDI_PAT
+                - name: FQDN
+                  valueFrom:
+                    secretKeyRef:
+                      name: gandi-dns-secret
+                      key: FQDN
+                - name: RECORD_TYPE
+                  valueFrom:
+                    secretKeyRef:
+                      name: gandi-dns-secret
+                      key: RECORD_TYPE
+                - name: RECORD_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: gandi-dns-secret
+                      key: RECORD_NAME
+
