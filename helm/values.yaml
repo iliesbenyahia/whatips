@@ -1,0 +1,11 @@
+
+image:
+  repository: yayadu08/whatips
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+cronSchedule: "*/1 * * * *"
+concurrencyPolicy: Forbid
+successfulJobsHistoryLimit: 3
+failedJobsHistoryLimit: 10
+restartPolicy: Never
